@@ -1,39 +1,81 @@
 // Clase
 
 class ToDo {
-
+    Texto
+    Prioridade
+    Feito = false
+    constructor(texto, prioridade){
+      this.Texto = texto
+      this.Prioridade = prioridade
+    }
 }
 
 // Array
-
+let arrayTodos = []
 
 //funções projeto
 
-function CriarToDo() {
-
+function CriarToDo(texto, prioridade, arrayTodos) {
+    let objetoTodo = new ToDo(texto, prioridade)
+    let toDoInserido = arrayTodos.some(todo => todo.Texto === objetoTodo.Texto)
+    if (toDoInserido === false) {
+      arrayTodos.push(objetoTodo)
+      return objetoTodo
+    }
 }
 
-function AtualizarToDo() {
-
+function AtualizarToDo(textoAntigo, textoNovo, arrayTodos) {
+    for (let i = 0; i < arrayTodos.length; i++) {
+      if (arrayTodos[i].Texto === textoAntigo) {
+        arrayTodos[i].Texto = textoNovo
+        return true
+      }else{
+        return false
+      }
+      
+    }
 }
 
-function ConcluirToDo() {
-
+function ConcluirToDo(arrayTodos, texto) {
+    for (let i = 0; i < arrayTodos.length; i++) {
+      if (arrayTodos[i].Texto === texto) {
+          arrayTodos.Feito = !arrayTodos.Feito
+          return true
+      }else{
+        return false
+      }
+      
+    }
 }
 
-function ExcluirToDo() {
-
+function ExcluirToDo(arrayTodos, texto) {
+  for (let i = 0; i < arrayTodos.length; i++){
+    if (arrayTodos[i].Texto === texto) {
+        arrayTodos.splice(i, 1)
+        return true
+    }else{
+      return false
+    }
+  }
 }
 
-function PesquisarToDo() {
- 
+function PesquisarToDo(arrayTodos, texto) {
+  for (let i = 0; i < arrayTodos.length; i++) {
+    if (arrayTodos[i].Texto === texto) {
+        return true
+    }else{
+      return false
+    }
+  }
 }
 
-function OrdenarCrescente() {
-  
+function OrdenarCrescente(arrayTodos) {
+    arrayTodos.sort((a, b) => a.Prioridade - b.Prioridade)
+    return arrayTodos
 }
-function OrdenarDecrescente() {
-  
+function OrdenarDecrescente(arrayTodos) {
+    arrayTodos.sort((a, b) => b.Prioridade - a.Prioridade)
+    return arrayTodos
 }
 
 // Seleção de elementos
